@@ -6,10 +6,10 @@ packager="tnut <tnut@nutyx.org>"
 contributors="Pierre B"
 
 name=mutagen
-version=1.36.2
+version=1.40.0
 release=1
 
-source=(https://bitbucket.org/lazka/mutagen/downloads/$name-$version.tar.gz)
+source=(https://github.com/quodlibet/mutagen/releases/download/release-$version/$name-$version.tar.gz)
 
 build() {
 cd $name-$version

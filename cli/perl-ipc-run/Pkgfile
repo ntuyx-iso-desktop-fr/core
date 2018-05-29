@@ -8,7 +8,7 @@ contributors="Alienus"
 run=( perl )
 
 name=perl-ipc-run
-version=0.94
+version=0.99
 release=1
 
 source=(http://search.cpan.org/CPAN/authors/id/T/TO/TODDR/IPC-Run-$version.tar.gz)

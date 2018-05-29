@@ -10,7 +10,7 @@ name=ntp
 version=4.2.8p11
 nutyx_version=10.1
 
-source=(http://downloads.nutyx.org/files/nutyx-${nutyx_version}.tar.xz
+source=(http://rems.techozor.fr/sources/blfs-systemd-units-20180105.tar.bz2
 	https://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/$name-4.2/$name-$version.tar.gz)
 
 
@@ -68,6 +68,6 @@ restrict 127.0.0.1
 restrict ::1
 EOF
 # service
-cd ../nutyx-${nutyx_version}
+cd ../blfs-systemd-units-20180105
 make DESTDIR=$PKG install-ntpd
 }

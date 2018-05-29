@@ -1,4 +1,4 @@
-# Depends on: python libxml2 libxslt openldap
+# Depends on: python libxml2 libxslt openldap systemd openssl10 icu pam perl
 
 description="Advanced object-relational database management system (ORDBMS)."
 url="http://www.postgresql.org/docs"
@@ -6,13 +6,11 @@ packager="tnut <tnut@nutyx.org>"
 contributors="Pierre B"
 
 PKGMK_GROUPS=(lib doc man devel service)
-
+ 
 name=postgresql
-version=10.3
-nutyx_version=10.1
+version=10.4
 
-source=(http://downloads.nutyx.org/files/nutyx-${nutyx_version}.tar.xz
-	http://ftp.postgresql.org/pub/source/v$version/$name-$version.tar.bz2)
+source=(http://ftp.postgresql.org/pub/source/v$version/$name-$version.tar.bz2)
 
 build() {
 cd $name-$version
@@ -23,7 +21,15 @@ sed -i '/DEFAULT_PGSOCKET_DIR/s@/tmp@/run/postgresql@' src/include/pg_config_man
 ./configure --prefix=/usr \
 --mandir=/usr/share/man \
 --with-docdir=/usr/share/doc/$name-$version \
---enable-thread-safety
+--enable-thread-safety \
+--with-icu \
+--with-ldap \
+--with-system-tzdata=/usr/share/zoneinfo \
+--with-perl \
+--with-openssl \
+--with-libxml \
+--with-systemd \
+--with-pam
 
 # build
 make
@@ -31,9 +37,4 @@ make
 # install
 make DESTDIR=$PKG install
 make DESTDIR=$PKG install-docs
-
-# service
-
-cd ../nutyx-${nutyx_version}
-make DESTDIR=$PKG install-$name
 }

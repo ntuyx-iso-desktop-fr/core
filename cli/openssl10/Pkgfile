@@ -6,7 +6,7 @@ name=openssl10
 version=1.0.2n
 
 source=(https://openssl.org/source/openssl-$version.tar.gz
-	http://www.linuxfromscratch.org/patches/blfs/svn/openssl-$version-compat_versioned_symbols-1.patch)
+	http://rems.techozor.fr/sources/openssl-$version-compat_versioned_symbols-1.patch)
 build() {
 unset MAKEFLAGS
 

@@ -1,4 +1,4 @@
-# Depends on: libxslt python
+# Depends on: libxslt python cython
 
 description="Python binding for the libxml2 and libxslt librairies"
 url="http://lxml.de/"
@@ -8,8 +8,9 @@ contributors="Greg, Remy"
 name=python-lxml
 _name=lxml
 version=4.1.1
-release=2
+release=1
 
-source=( https://files.pythonhosted.org/packages/source/l/lxml/lxml-$version.tar.gz)
+source=(http://rsync.nutyx.org/sources/lxml-4.1.1.tar.gz)
 
 build=python3
+}

@@ -5,9 +5,9 @@ url="https://github.com/NuTyX/cards"
 maintainer="Tnut, Gianni"
 packager="tnut <tnut@nutyx dot org>"
 name=libcards
-version=2.4.0
+version=2.4.81
 
-source=(http://downloads.nutyx.org/files/cards-$version.tar.gz)
+source=(https://github.com/rems28/cards/archive/2.4.81.tar.gz)
 build () {
 cd cards-$version
 make libs

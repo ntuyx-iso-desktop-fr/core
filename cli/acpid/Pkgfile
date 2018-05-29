@@ -8,7 +8,7 @@ version=2.0.28
 release=3
 nutyx_version=9.92
 
-source=(http://downloads.nutyx.org/files/nutyx-${nutyx_version}.tar.xz
+source=(http://www.linuxfromscratch.org/blfs/downloads/svn/blfs-systemd-units-20180105.tar.bz2
 	http://downloads.sourceforge.net/acpid2/$name-$version.tar.xz 
 	lid lid.sh)
 
@@ -36,7 +36,7 @@ package() {
 
 	chmod +x $PKG/etc/acpi/lid.sh
 	# Service
-	cd $SRC/nutyx-${nutyx_version}
+	cd $SRC/blfs-systemd-units-20180105
 	make DESTDIR=$PKG install-acpid
 
 }

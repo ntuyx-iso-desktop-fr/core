@@ -6,17 +6,17 @@ contributors="Berlius, Fanch"
 url="http://ftp.u-strasbg.fr/securite"
 
 name=lsof
-version=4.89
-release=2
+version=4.91
+release=1
 
-source=(http://ftp.u-strasbg.fr/securite/lsof/lsof_$version.tar.gz)
+source=(ftp://$name.itap.purdue.edu/pub/tools/unix/$name/lsof_$version.tar.gz)
 
 build () {
 
 	cd $name\_$version
 
-	tar -xf lsof_4.89_src.tar  
-	cd lsof_4.89_src           
+	tar -xf lsof_4.91_src.tar  
+	cd lsof_4.91_src           
 	./Configure -n linux       
 	make CFGL="-L./lib -ltirpc"
 	

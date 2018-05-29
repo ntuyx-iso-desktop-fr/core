@@ -6,10 +6,8 @@ contributors="Fanch, Pierre B"
 name=sysstat
 version=11.5.7
 release=2
-nutyx_version=9.92
 
-source=(http://downloads.nutyx.org/files/nutyx-${nutyx_version}.tar.xz
-	$url/$name-$version.tar.xz)
+source=($url/$name-$version.tar.xz)
 build() {
 
 cd $name-$version
@@ -21,8 +19,7 @@ conf_dir=/etc/sysconfig   \
             --disable-file-attr 
 make
 make DESTDIR=$PKG install
+install -v -m644 sysstat.service /lib/systemd/system/sysstat.service
+sed -i "/^Also=/d" /lib/systemd/system/sysstat.service
 
-# Service
-cd ../nutyx-${nutyx_version}
-make DESTDIR=$PKG install-sysstat
 }

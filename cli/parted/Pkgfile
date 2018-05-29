@@ -14,9 +14,11 @@ source=(http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz
 
 build() {
 cd $name-$version
-patch -Np1 -i ../parted-3.2-devmapper-1.patch
+patch -Np1 -i ../parted-$version-devmapper-1.patch
 ./configure --prefix=/usr \
---disable-static
+--disable-static \
+--disable-device-mapper
+
 make
 make DESTDIR=$PKG install
 rm $PKG/usr/share/info/dir

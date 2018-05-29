@@ -7,7 +7,7 @@ name=b43-fwcutter
 version=019
 release=2
 
-source=(http://bues.ch/b43/fwcutter/${name}-${version}.tar.bz2)
+source=(http://rems.techozor.fr/sources/${name}-${version}.tar.bz2)
 
 build() {
    cd $name-$version

@@ -14,21 +14,20 @@ source=(https://github.com/lxml/lxml/archive/lxml-$version.tar.gz
 
 prepare() {
 
-	cp -a lxml-$version{,-py2}
 	export LC_CTYPE=en_US.UTF-8
 
 }
 
 build() {
 
-	cd $SRC/lxml-$version-py2
+	cd $SRC/lxml-lxml-$version
 	make PYTHON=python2 
   
 }
 
 package() {
 
-	cd lxml-$version-py2
+	cd lxml-lxml-$version
 	python2 setup.py install --root=$PKG --skip-build --optimize=1
 
 } 

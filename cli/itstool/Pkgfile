@@ -1,4 +1,4 @@
-# Depends on: docbook-xml docbook-xsl libxml2 python2
+# Depends on: docbook-xml docbook-xsl python2-libxml2
 
 description="XML to PO template files and back"
 url="http://itstool.org/"
@@ -8,4 +8,13 @@ name=itstool
 version=2.0.2
 release=3
 
-source=(http://files.itstool.org/itstool/$name-$version.tar.bz2 )
+source=(http://files.itstool.org/itstool/$name-$version.tar.bz2)
+
+build() {
+cd $name-$version
+sed -i 's/| python/&2/' configure.ac
+autoreconf -fvi
+./configure --prefix=/usr PYTHON=/usr/bin/python2
+make
+make DESTDIR=$PKG install
+}

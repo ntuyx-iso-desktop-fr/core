@@ -4,12 +4,10 @@ packager="tnut <tnut@nutyx.org>"
 contributors="Pierre B"
 
 name=smartmontools
-version=6.5
+version=6.6
 release=3
-nutyx_version=9.92
 
-source=(http://downloads.nutyx.org/files/nutyx-${nutyx_version}.tar.xz
-	http://downloads.sourceforge.net/sourceforge/$name/$name-$version.tar.gz )
+source=(http://downloads.sourceforge.net/sourceforge/$name/$name-$version.tar.gz )
 
 build() {
 
@@ -20,8 +18,4 @@ build() {
 	--docdir=/usr/share/doc/smartmontools-$version
 	make
 	make DESTDIR=$PKG install
-
-	# Service
-	cd ../nutyx-${nutyx_version}
-	make DESTDIR=$PKG install-smartd
 }

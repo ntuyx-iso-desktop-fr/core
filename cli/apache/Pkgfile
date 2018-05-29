@@ -1,4 +1,4 @@
-# Depends on: pcre apr-util sqlite expat
+# Depends on: pcre apr-util sqlite expat systemd
 
 description="An open-source HTTP server for modern operating systems."
 url="http://httpd.apache.org/ABOUT_APACHE.html"
@@ -8,9 +8,9 @@ name=apache
 version=2.4.33
 nutyx_version=10.1
 
-source=(http://downloads.nutyx.org/files/nutyx-${nutyx_version}.tar.xz
-	http://archive.apache.org/dist/httpd/httpd-$version.tar.bz2
-	http://www.linuxfromscratch.org/patches/blfs/svn/httpd-$version-blfs_layout-1.patch)
+source=(http://archive.apache.org/dist/httpd/httpd-$version.tar.bz2
+	http://www.linuxfromscratch.org/patches/blfs/svn/httpd-$version-blfs_layout-1.patch
+        httpd.service httpd.logrotate apache.tmpfiles.conf)
 build(){
 
 cd httpd-$version
@@ -20,6 +20,8 @@ sed '/dir.*CFG_PREFIX/s@^@#@' -i support/apxs.in
 ./configure --enable-authnz-fcgi                            \
             --enable-layout=BLFS                            \
             --enable-mods-shared="all cgi"                  \
+            --enable-modules=all                            \
+            --with-ssl                                      \
             --enable-mpms-shared=all                        \
             --enable-suexec=shared                          \
             --with-apr=/usr/bin/apr-1-config                \
@@ -41,8 +43,9 @@ chown -v -R apache:apache $PKG/srv/www
 rm -f $PKG/srv/www/htdocs/index.html
 
 # Service
-cd $SRC/nutyx-${nutyx_version}
-make DESTDIR=$PKG install-httpd
+install -D -m644 "${srcdir}/httpd.logrotate" "$PKG/etc/logrotate.d/httpd"
+  install -D -m644 "${srcdir}/apache.tmpfiles.conf" "$PKG/usr/lib/tmpfiles.d/apache.conf"
+  install -D -m644 "${srcdir}/httpd.service" "$PKG/lib/systemd/system/httpd.service"
 mv $PKG/etc/httpd/httpd.conf{,.example}
 }
 

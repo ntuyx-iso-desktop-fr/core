@@ -1,3 +1,4 @@
+# Depends on: systemd 
 description="A disk reporting library. It only supports a subset of the ATA S.M.A.R.T. functionality."
 url="http://0pointer.de/blog/projects/being-smart.html"
 maintainer="Lennart"
