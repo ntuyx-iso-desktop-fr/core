@@ -8,12 +8,12 @@ contributors="Fanch"
 name=sassc
 version=3.5.0
 release=1
-source=(http://rsync.nutyx.org/sources/$name-$version.tar.bz2)
+source=(https://github.com/sass/sassc/archive/3.5.0/$name-$version.tar.gz)
 
 build() {
 cd $name-$version
-autoreconf -i
-	./configure --prefix=/usr
+autoreconf -fi
+	./configure --prefix=/usr --disable-static
 	make
 	make DESTDIR=$PKG install
 }

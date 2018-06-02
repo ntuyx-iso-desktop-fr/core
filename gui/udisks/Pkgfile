@@ -14,6 +14,8 @@ source=(http://hal.freedesktop.org/releases/$name-$version.tar.gz)
 build() {
 
 cd udisks-$version
+sed 's@#include <stdio\.h>@#include <sys/stat.h>\n#include <stdio.h>@' \
+    -i src/helpers/job-drive-detach.c
 ./configure --prefix=/usr \
 --sysconfdir=/etc \
 --localstatedir=/var \

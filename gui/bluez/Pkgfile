@@ -6,21 +6,16 @@ packager="tnut <tnut@nutyx.org>"
 contributors="Pierre B"
 
 name=bluez
-version=5.46
+version=5.49
 release=2
-nutyx_version=9.92
 
-source=(http://downloads.nutyx.org/files/nutyx-${nutyx_version}.tar.xz
-	http://www.kernel.org/pub/linux/bluetooth/$name-$version.tar.xz
-	http://www.linuxfromscratch.org/patches/blfs/svn/$name-$version-obexd_without_systemd-1.patch)
+source=(http://www.kernel.org/pub/linux/bluetooth/$name-$version.tar.xz)
 build() {
 cd $name-$version
-patch -Np1 -i ../$name-$version-obexd_without_systemd-1.patch
 
 ./configure --prefix=/usr \
     --sysconfdir=/etc \
     --localstatedir=/var \
-    --disable-systemd \
     --enable-gstreamer \
     --enable-alsa \
     --enable-usb \
@@ -33,8 +28,7 @@ patch -Np1 -i ../$name-$version-obexd_without_systemd-1.patch
     --enable-dund \
     --enable-cups \
     --disable-test \
-    --enable-library \
-    --without-systemdunitdir
+    --enable-library
 make
 make DESTDIR=$PKG install
 
@@ -69,8 +63,4 @@ install -m644 profiles/network/network.conf \
 
 install -v -dm755 $PKG/usr/share/doc/$name-$version
 install -v -m644 doc/*.txt $PKG/usr/share/doc/$name-$version
-
-# Service
-cd ../nutyx-${nutyx_version}
-make DESTDIR=$PKG install-bluetooth
 }

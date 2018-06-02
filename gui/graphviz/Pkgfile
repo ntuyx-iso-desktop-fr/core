@@ -7,20 +7,20 @@ contributors="Pierre B"
 
 
 name=graphviz
-version=2.38.0
-release=5
+version=2.40.1
+release=1
 
-source=(http://www.graphviz.org/pub/graphviz/stable/SOURCES/$name-$version.tar.gz
-       http://www.linuxfromscratch.org/patches/blfs/svn/graphviz-2.38.0-consolidated_fixes-1.patch)
+source=(http://www.graphviz.org/pub/graphviz/stable/SOURCES/$name.tar.gz
+        http://www.linuxfromscratch.org/patches/blfs/svn/graphviz-2.40.1-qt5-1.patch)
 
 build () {
   cd $name-$version
-
-  patch -Np1 -i ../graphviz-2.38.0-consolidated_fixes-1.patch
+  sed -e '/ruby/s/1\.9/2.4/' -i configure.ac
+  patch -p1 -i ../graphviz-2.40.1-qt5-1.patch
   sed -i '/LIBPOSTFIX="64"/s/64//' configure.ac
 
   autoreconf
-  ./configure --prefix=/usr --disable-php
+  ./configure --prefix=/ur
   make	
   make DESTDIR=$PKG install
 	

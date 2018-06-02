@@ -1,4 +1,4 @@
-# Depends on: bc libglade xorg-libxmu xorg-libxt xorg-libxpm
+# Depends on: bc libglade xorg-libxmu xorg-libxt xorg-libxpm xorg-glu
 
 description="Screen saver and locker for the X Window System"
 url="http://www.jwz.org/xscreensaver/"
@@ -6,7 +6,7 @@ packager="greg <greg@nutyx.org>"
 contributors="Pierre B"
 
 name=xscreensaver
-version=5.37
+version=5.39
 release=1
 
 source=(http://www.jwz.org/xscreensaver/$name-$version.tar.gz)
@@ -15,8 +15,7 @@ build() {
 
 cd $name-$version
 ./configure --prefix=/usr \
---libexecdir=/usr/lib \
---without-gnome
+--libexecdir=/usr/lib 
 make
 
 make install_prefix=$PKG install

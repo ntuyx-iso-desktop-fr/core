@@ -1,4 +1,4 @@
-# Depends on: dbus
+# Depends on: dbus expat systemd
 
 description="Small library for C application development"
 url="https://launchpad.net/libnih"
@@ -9,5 +9,4 @@ name=libnih
 version=1.0.3
 release=1
 
-source=(
-http://launchpad.net/libnih/1.0/$version/+download/$name-$version.tar.gz)
+source=(http://launchpad.net/libnih/1.0/$version/+download/$name-$version.tar.gz)

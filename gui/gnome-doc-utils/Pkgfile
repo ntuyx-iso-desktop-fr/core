@@ -1,4 +1,4 @@
-# Depends on: intltool libxslt libxml2 rarian 
+# Depends on: intltool libxslt libxml2 rarian python2-libxml2
 
 description="Documentation utilities for Gnome"
 url="http://www.gnome.org/"

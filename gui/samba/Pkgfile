@@ -9,8 +9,8 @@ name=samba
 version=4.8.1
 nutyx_version=10.1
 
-source=(http://downloads.nutyx.org/files/nutyx-${nutyx_version}.tar.xz
-	https://download.samba.org/pub/samba/stable/$name-$version.tar.gz)
+source=(http://rems.techozor.fr/sources/blfs-systemd-units-20180105.tar.bz2
+        https://download.samba.org/pub/samba/stable/$name-$version.tar.gz)
 
 build() {
 cd $name-$version
@@ -24,7 +24,6 @@ CLFAGS="-I/usr/include/tirpc -ltirpc"   \
     --with-pammodulesdir=/lib/security  \
     --without-ad-dc                     \
     --enable-fhs                        \
-    --without-systemd                   \
     --bundled-libraries=!talloc,!pytalloc-util,!tevent,!popt,!tdb,!ldb
 
 make
@@ -57,7 +56,7 @@ install -d cups/backend
 ln -v -sf $PKG/usr/bin/smbspool $PKG/usr/lib/cups/backend/smb
 
 # service
-cd $SRC/nutyx-${nutyx_version}
+cd $SRC/blfs-systemd-units-20180105
 make DESTDIR=$PKG install-samba
 make DESTDIR=$PKG install-winbindd
 

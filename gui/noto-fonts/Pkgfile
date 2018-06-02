@@ -6,15 +6,16 @@ packager="tnut <tnut@nutyx.org>"
 contributors="Pierre B"
 
 name=noto-fonts
-version=20171113
+version=20180322
 
-source=(http://downloads.nutyx.org/files/$name-$version.tar.xz
+source=(http://rems.techozor.fr/sources/$name-$version.tar.gz
 	66-noto-mono.conf 66-noto-sans.conf 66-noto-serif.conf)
 
 build() {
-  cd $name-$version
+  cd $name-*/
   mkdir -p $PKG/usr/share/fonts/noto
-  install -m644 hinted/Noto*.ttf $PKG/usr/share/fonts/noto
+  install -m644 hinted/Noto*.tt[fc] -t $PKG/usr/share/fonts/noto
+  install -Dm644 unhinted/Noto*.tt[fc] -t $PKG/usr/share/fonts/noto
 
   mkdir -p $PKG/usr/share/fonts/TTF
   for font in Arimo Cousine Tinos; do
